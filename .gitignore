@@ -1,2 +1,4 @@
 .idea
 *.pyc
+pinarayiMeter/pinarayi_meter/migrations/*
+pinarayiMeter/db.sqlite3
