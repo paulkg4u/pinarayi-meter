@@ -1,10 +1,43 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name = "viewport" content="width=device-width, initial-scale=1">
+    <title>Pinarayi Meter</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 <body>
+<nav class = "navbar navbar-inverse navbar-fixed-top top-navbar" style = "opacity:1.0;">
+    <div class = "container">
+	<div class = "navbar-header">
+		<a class = "navbar-brand" href = "#">
+            <!--<img src="">-->
+            Pinarayi Meter
 
+        </a>
+	</div>
+	<div class="navbar-collapse collapse">
+        <ul class = "nav navbar-nav">
+            <li class = ""><a href="#">Home</a></li>
+            <li class = ""><a href = "#">About</a></li>
+            <li class = ""><a href = "#">Contact</a></li>
+        </ul>
+		<ul class = "nav navbar-nav navbar-right">
+
+		</ul>
+
+	</div>
+
+</div>
+</nav>
+{% block pageBody %}
+{% endblock %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src = "{% static 'js/bootstrap.min.js' %}"></script>
 </body>
+
 </html>

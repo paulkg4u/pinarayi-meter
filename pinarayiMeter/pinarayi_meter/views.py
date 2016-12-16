@@ -8,7 +8,8 @@ from constants import  Collection
 def index(request):
     promiseLib = PromiseLib()
     result = promiseLib.list_promise()
-    return HttpResponse("hello malayali")
+    response = {'promises':result}
+    return render(request,'pinarayi_meter/index.html',response)
 
 def promise(request, uuid):
     reqObj = Collection()
