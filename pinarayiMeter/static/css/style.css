@@ -1,6 +1,15 @@
 body {
   padding-top: 50px;
 }
+.flex-display{
+  display: flex;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .starter-template {
   padding: 40px 15px;
   text-align: center;
@@ -24,4 +33,16 @@ body {
 .profile-image{
     height: auto;
     width: auto;
+}
+
+.promise-list{
+  height: 40px !important;
+  margin-bottom: 2px !important;
+  border: 1px solid #aaaadd;
+  background-color: #dddddd;
+  border-radius: 5px;
+}
+.promise-title{
+  font-size: 20px;
+  font-weight: 500;
 }

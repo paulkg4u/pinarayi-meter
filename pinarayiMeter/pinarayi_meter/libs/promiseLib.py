@@ -1,4 +1,5 @@
 from .. models import  Promise
+from .. constants import *
 
 class PromiseLib(object):
     def __init__(self):
@@ -8,6 +9,11 @@ class PromiseLib(object):
         promises = Promise.objects.all()
         return  promises
 
+    def get_top_promises(self):
+        promises = Promise.objects.filter(category = THIRTY_FIVE_POINT_PROGRAMME)
+        print len(promises)
+        return promises
+        
     def get_promise(self,reqObj):
         promise = Promise.objects.get(uuid = reqObj.uuid)
         return  promise
