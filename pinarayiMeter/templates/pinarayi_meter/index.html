@@ -27,10 +27,21 @@
     </div>
     <div class = "col-md-12">
         <h3>
-            The Thirty five Point Programme
+            The Thirty Five Point Programme
         </h3>
-        {% for promise in promises %}
-            {{promise.status}}
+        {% for promise in topPromises %}
+            <a class = "col-md-12 promise-list no-padding" href = "/promise/details/{{promise.uuid}}">
+                <span class = "col-md-10 promise-title flex-container">
+                    {{promise.title}}
+                </span>
+                <!-- <h4 class = "promise-title">
+                    {{promise.title}}
+                </h4> -->
+                <span class = "col-md-2 promise-status flex-container">
+                    {{promise.status}}
+                </span>
+                <!-- {{promise.status}} -->
+            </a>
         {% endfor %}
     </div>
 </div>

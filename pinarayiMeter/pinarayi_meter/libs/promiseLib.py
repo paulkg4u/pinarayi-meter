@@ -11,7 +11,6 @@ class PromiseLib(object):
 
     def get_top_promises(self):
         promises = Promise.objects.filter(category = THIRTY_FIVE_POINT_PROGRAMME)
-        print len(promises)
         return promises
         
     def get_promise(self,reqObj):

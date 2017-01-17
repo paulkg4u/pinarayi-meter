@@ -41,8 +41,26 @@ body {
   border: 1px solid #aaaadd;
   background-color: #dddddd;
   border-radius: 5px;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+
+.promise-list:hover{
+  color: #000;
+  text-decoration: none; 
 }
 .promise-title{
-  font-size: 20px;
+  font-size: 23px;
+  font-weight: 500;
+  height: 100%;
+}
+
+.promise-status {
+  height: 100%;
+}
+
+.promise-description{
+  font-size: 18px;
   font-weight: 500;
 }

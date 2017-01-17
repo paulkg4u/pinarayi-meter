@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "main.html" %}
+{% load static %}
+{% block pageBody %}
 
-</body>
-</html>
+<div class = "container">
+    <div class = "col-md-12">
+        <div class = "col-md-9 no-padding">
+            <div class = "col-md-12">
+                <h3>Promises</h3>
+            </div>
+            <div class = "col-md-6">
+                
+                {% for promise in promises %}
+                    {{promise.status}}
+                {% endfor %}
+            </div>
+            <div class = "col-md-6">
+                <p>
+                    The Pinarayi Meter is an independent initiative that tracks
+                    his performance with regards to his electoral platform.
+                </p>
+            </div>
+        </div>
+        <div class = "col-md-3 center no-padding padding-20">
+            <img src="{% static 'images/pinarayi_profile.jpg' %}" class = "profile-image">
+        </div>
+    </div>
+    <div class = "col-md-12">
+        <h3>
+        	 {{promiseDetails.title}}   
+        </h3>
+        <div class = "promise-description">
+        	{{promiseDetails.description}}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -3,7 +3,8 @@ from django.http import  HttpResponse
 
 from libs.promiseLib import  PromiseLib
 
-# from constants import  Collection
+from helpers import  Collection
+
 # Create your views here.
 def index(request):
     promiseLib = PromiseLib()
@@ -16,9 +17,9 @@ def index(request):
 def promise(request, uuid):
     reqObj = Collection()
     reqObj.uuid = uuid
-    promiseLib =PromiseLib()
-    
-    result = promiseLib.get_promise(reqObj)
 
-    return HttpResponse("list promise")
+    promiseLib =PromiseLib()
+    promiseDetails = promiseLib.get_promise(reqObj)
+    response = {'promiseDetails':promiseDetails}
+    return render(request,'pinarayi_meter/promise.html',response)
 
