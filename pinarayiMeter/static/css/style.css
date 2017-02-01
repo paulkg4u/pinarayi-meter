@@ -33,6 +33,7 @@ body {
 .profile-image{
     height: auto;
     width: auto;
+    border-radius: 15px !important;
 }
 
 .promise-list{
