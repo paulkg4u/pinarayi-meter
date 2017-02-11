@@ -1,49 +1,53 @@
 {% extends "main.html" %} 
 {% load static %} 
 {% block pageBody %}
-<div class="container" ng-controller = "homePageController">
-    <div class="col-md-12">
+<div class="container-fluid" ng-controller = "homePageController">
+    <div class="col-md-10 col-sm-12 col-md-offset-1">
         <div class="col-md-12 no-padding">
             <h3 class="">Promises</h3>
         </div>
         <div class="col-md-12 no-padding" style="height:200px;">
-            <div class="col-md-4 height-100">
+            <div class = "col-md-4 col-sm-8 height-100 flex-container text-center" ng-hide="status">
+            <i class = "fa fa-2x fa-spinner fa-spin"></i>
+            <span class = "col-md-12">Loading Status</span>
+            </div>
+            <div class="col-md-4 col-sm-8 height-100" ng-if = "status">
                 <span class="progress-bar-text">
-                            Not Started
+                            Not Started ([[status.not_started]] of [[status.total]])
                     </span>
                 <div class="progress progress-custom">
-                    <div class="progress-bar progress-bar-idle progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                    <div class="progress-bar progress-bar-idle progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:[[status.not_started*100/status.total]]%">
                     </div>
                 </div>
                 <span class="progress-bar-text">
-                            Completed
+                            Completed ([[status.completed]] of [[status.total]])
                     </span>
                 <div class="progress progress-custom">
-                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:[[status.completed*100/status.total]]%">
                     </div>
                 </div>
                 <span class="progress-bar-text">
-                            In Progress
+                            In Progress ([[status.in_progress]] of [[status.total]])
                     </span>
                 <div class="progress progress-custom">
-                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:[[status.in_progress*100/status.total]]%">
                     </div>
                 </div>
                 <span class="progress-bar-text">
-                            Broken
+                            Broken ([[status.broken]] of [[status.total]])
                     </span>
                 <div class="progress  progress-custom">
-                    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:[[status.broken*100/status.total]]%">
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 height-100 border-thick no-padding">
+            <div class="col-md-8 col-sm-4 height-100 border-thick no-padding">
                 <div class = "col-md-6 padding-10">
                     <p class = "desc-text">
                     The Pinarayi Meter is an independent initiative that tracks his performance with regards to his electoral platform.
                 </p>
                 </div>
-                <div class = "col-md-6 no-padding">
+                <div class = "col-md-6 hidden-sm no-padding">
                 <img src="{% static 'images/pinarayi_profile.jpg' %}" class=" pull-right profile-image">        
 
                 </div>
@@ -51,7 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-10 col-sm-12 col-md-offset-1">
         <h4 class="category-titles">
             The Thirty Five Point Programme
         </h4> {% for promise in topPromises %}
@@ -71,7 +75,7 @@
         </a>
         {% endfor %}
     </div>
-    <div class="col-md-12">
+    <div class="col-md-10 col-sm-12 col-md-offset-1">
         <h4 class = "category-titles text-center">
             <span class = "category-item" ng-click = "selectedCategory = 'agriculture'" ng-class = "{'category-item-selected':selectedCategory == 'agriculture'}">Agriculture</span>
 
@@ -88,6 +92,6 @@
             '}">Human Develoment</span>
         </h4>
     </div>
-    <div class = "col-md-12"></div>
+    <div class = "col-md-10 col-sm-12 col-md-offset-1"></div>
 </div>
 {% endblock %}
