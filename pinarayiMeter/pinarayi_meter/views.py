@@ -9,9 +9,7 @@ from helpers import  Collection
 def index(request):
     promiseLib = PromiseLib()
     topPromises = promiseLib.get_top_promises()
-    # promises = promiseLib.list_promise()
     response = {'topPromises':topPromises}
-    # response['promises'] = promises
     return render(request,'pinarayi_meter/index.html',response)
 
 def promise(request, uuid):

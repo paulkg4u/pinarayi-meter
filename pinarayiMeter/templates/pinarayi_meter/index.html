@@ -1,48 +1,93 @@
-{% extends "main.html" %}
-{% load static %}
+{% extends "main.html" %} 
+{% load static %} 
 {% block pageBody %}
-
-<div class = "container">
-    <div class = "col-md-12">
-        <div class = "col-md-9 no-padding">
-            <div class = "col-md-12">
-                <h3>Promises</h3>
-            </div>
-            <div class = "col-md-6">
-                
-                {% for promise in promises %}
-                    {{promise.status}}
-                {% endfor %}
-            </div>
-            <div class = "col-md-6">
-                <p>
-                    The Pinarayi Meter is an independent initiative that tracks
-                    his performance with regards to his electoral platform.
-                </p>
-            </div>
+<div class="container" ng-controller = "homePageController">
+    <div class="col-md-12">
+        <div class="col-md-12 no-padding">
+            <h3 class="">Promises</h3>
         </div>
-        <div class = "col-md-3 center no-padding padding-20">
-            <img src="{% static 'images/pinarayi_profile.jpg' %}" class = "profile-image">
+        <div class="col-md-12 no-padding" style="height:200px;">
+            <div class="col-md-4 height-100">
+                <span class="progress-bar-text">
+                            Not Started
+                    </span>
+                <div class="progress progress-custom">
+                    <div class="progress-bar progress-bar-idle progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                    </div>
+                </div>
+                <span class="progress-bar-text">
+                            Completed
+                    </span>
+                <div class="progress progress-custom">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                    </div>
+                </div>
+                <span class="progress-bar-text">
+                            In Progress
+                    </span>
+                <div class="progress progress-custom">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                    </div>
+                </div>
+                <span class="progress-bar-text">
+                            Broken
+                    </span>
+                <div class="progress  progress-custom">
+                    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 height-100 border-thick no-padding">
+                <div class = "col-md-6 padding-10">
+                    <p class = "desc-text">
+                    The Pinarayi Meter is an independent initiative that tracks his performance with regards to his electoral platform.
+                </p>
+                </div>
+                <div class = "col-md-6 no-padding">
+                <img src="{% static 'images/pinarayi_profile.jpg' %}" class=" pull-right profile-image">        
+
+                </div>
+                
+            </div>
         </div>
     </div>
-    <div class = "col-md-12">
-        <h3>
+    <div class="col-md-12">
+        <h4 class="category-titles">
             The Thirty Five Point Programme
-        </h3>
-        {% for promise in topPromises %}
-            <a class = "col-md-12 promise-list no-padding" href = "/promise/details/{{promise.uuid}}">
-                <span class = "col-md-10 promise-title flex-container">
+        </h4> {% for promise in topPromises %}
+        <a class="col-md-12 promise-list no-padding" href="/promise/details/{{promise.uuid}}">
+            <span class="col-md-10 promise-title flex-container">
                     {{promise.title}}
                 </span>
-                <!-- <h4 class = "promise-title">
+            <!-- <h4 class = "promise-title">
                     {{promise.title}}
                 </h4> -->
-                <span class = "col-md-2 promise-status flex-container">
-                    {{promise.status}}
-                </span>
-                <!-- {{promise.status}} -->
-            </a>
+            <span class="col-md-2 promise-status">
+                    <span class="pull-right">
+                            {{promise.status}}
+                    </span>
+            </span>
+            <!-- {{promise.status}} -->
+        </a>
         {% endfor %}
     </div>
+    <div class="col-md-12">
+        <h4 class = "category-titles text-center">
+            <span class = "category-item" ng-click = "selectedCategory = 'agriculture'" ng-class = "{'category-item-selected':selectedCategory == 'agriculture'}">Agriculture</span>
+
+            <span class = "category-item" ng-click = "selectedCategory = 'education'" ng-class = "{'category-item-selected':selectedCategory == 'education'}">Education</span> 
+
+            <span class = "category-item" ng-click = "selectedCategory = 'industries'" ng-class = "{'category-item-selected':selectedCategory == 'industries'}">Industries</span> 
+
+            <span class = "category-item" ng-click = "selectedCategory = 'lawandorder'" ng-class = "{'category-item-selected':selectedCategory == 'lawandorder'}">Law & Order</span>
+
+            <span class = "category-item" ng-click = "selectedCategory = 'it'" ng-class = "{'category-item-selected':selectedCategory == 'it'}">IT</span>
+            <span class = "category-item" ng-click = "selectedCategory = 'tourism'" ng-class = "{'category-item-selected':selectedCategory == 'tourism'}">Tourism</span>
+            <span class = "category-item" ng-click = "selectedCategory = 'infrastructure'" ng-class = "{'category-item-selected':selectedCategory == 'infrastructure'}">Infrastructure</span>
+            <span class = "category-item" ng-click = "selectedCategory = 'humandevelopment'" ng-class = "{'category-item-selected':selectedCategory == 'humandevelopment
+            '}">Human Develoment</span>
+        </h4>
+    </div>
+    <div class = "col-md-12"></div>
 </div>
 {% endblock %}

@@ -1,5 +1,6 @@
 body {
   padding-top: 50px;
+  background-color: #f0f0f0;
 }
 .flex-display{
   display: flex;
@@ -27,19 +28,22 @@ body {
 .padding-20{
     padding: 20px !important;
 }
+.padding-10{
+    padding: 10px !important;
+}
 .center{
     text-align: center;
 }
 .profile-image{
     height: auto;
     width: auto;
-    border-radius: 15px !important;
+    
 }
 
 .promise-list{
   height: 40px !important;
   margin-bottom: 2px !important;
-  border: 1px solid #aaaadd;
+  border: 3px solid #bbbbbb;
   background-color: #dddddd;
   border-radius: 5px;
   cursor: pointer;
@@ -52,16 +56,57 @@ body {
   text-decoration: none; 
 }
 .promise-title{
-  font-size: 23px;
+  font-size: 18px;
   font-weight: 500;
   height: 100%;
 }
 
 .promise-status {
   height: 100%;
+  padding-top: 6px;
 }
 
 .promise-description{
   font-size: 18px;
   font-weight: 500;
+}
+
+.progress-bar-idle{
+background-color: #aaa;
+}
+
+.progress-bar-text{
+  color: #000;
+  font-weight: 600 !important;
+}
+
+.progress-custom{
+  margin-bottom:7px !important;
+}
+.category-titles{
+  font-weight: 600 !important;
+  cursor: pointer;
+}
+
+.category-item{
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+.category-item:hover{
+  color:#993333;
+}
+.category-item-selected{
+  color: #bb5555;
+}
+
+.desc-text{
+  line-height: 1.2;
+  font-size:16px;
+  color: #ccc;
+}
+
+.border-thick{
+  border: 3px solid #777;
+  background-color: #333;
+  padding: 10px;
 }

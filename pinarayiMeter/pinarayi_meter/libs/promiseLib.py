@@ -22,3 +22,10 @@ class PromiseLib(object):
 
     def get_promise_by_status(self,reqObj):
         pass
+
+class CategoryLib(object):
+    def __init__(self):
+        pass
+
+    def get_promise_by_category(self,reqObj):
+        pass

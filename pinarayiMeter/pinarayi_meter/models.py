@@ -26,6 +26,7 @@ class Promise(models.Model):
 	status = models.CharField(max_length = 50, choices = STATUS, default = "Not Started")
 	description = models.TextField(default = "")
 	category = models.CharField(max_length = 50,choices = CATEGORIES)
+	
 
 	def __unicode__(self):
 		return unicode(self.title)
