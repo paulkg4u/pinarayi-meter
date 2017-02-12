@@ -87,6 +87,15 @@ background-color: #aaa;
   font-weight: 600 !important;
   cursor: pointer;
 }
+.category-link{
+  cursor: pointer;
+  color: #77a !important;
+  font-size: 15px !important;
+  text-decoration: none;
+}
+.category-link:hover{
+  text-decoration: none;
+}
 
 .category-item{
   padding-left: 10px !important;

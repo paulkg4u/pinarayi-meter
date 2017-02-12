@@ -1,5 +1,10 @@
+from django.core import serializers
+
 from .. models import  Promise
 from .. constants import *
+
+
+import json
 
 class PromiseLib(object):
     def __init__(self):
@@ -28,7 +33,8 @@ class CategoryLib(object):
         pass
 
     def get_promise_by_category(self,reqObj):
-        # promises = Promise.objects.filter(category__in = [reqObj.categoryList])
-        promises = Promise.objects.all()
-        print promises
-        return {}
+        print reqObj.categoryList
+        promises = Promise.objects.filter(category__in = [reqObj.categoryList])
+        data = serializers.serialize('json', promises)
+
+        return {'promises':data}

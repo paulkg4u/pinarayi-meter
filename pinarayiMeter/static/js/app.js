@@ -13,10 +13,10 @@ angular.module('pinarayiMeter').controller('homePageController', function($scope
                 url: '/promise/api/category',
                 params: {
                     'type': 'minimal',
-                    'categoryList': $scope.selectedCategory
+                    'categoryList': $rootScope.categoryKeys[$scope.selectedCategory]
                 }
             }).then(function successCallback(response) {
-            	$rootScope.selectedCategory = response.data;
+            	$rootScope.categoryData[$scope.selectedCategory] = response.data.promises;
             	$scope.loadingCategoryData = false;
             }, function errorCallback(response) {
                 console.log(response.data);
@@ -48,8 +48,22 @@ pinarayiMeter.run(function($rootScope, $http) {
         'it': null,
         'tourism': null,
         'infrastructure': null,
-        'humandevelopment': null,
-        'health':null
+        // 'humandevelopment': null,
+        'health':null,
+        'others':null
+    };
+
+    $rootScope.categoryKeys = {
+    	'agriculture':['Agriculture','Animal Husbandry','Irrigation','Plantation Crops','Fisheries'],
+    	'education':['Education'],
+    	'industries':['Traditional Industries','Modern Industries','Trade'],
+    	'lawandorder': ['Law and Order','Social Security'],
+    	'it':['IT'],
+    	'tourism':['Tourism'],
+    	'infrastructure':['Transportation','Construction'],
+    	// 'humandevelopment':['Youth'],
+    	'health':['Health'],
+    	'others':['Electricity','Finance','Youth']
     };
 });
 

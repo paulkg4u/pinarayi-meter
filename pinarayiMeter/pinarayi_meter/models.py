@@ -14,12 +14,25 @@ class Promise(models.Model):
 	CATEGORIES = (
 			('Thirty Five Point Programme', 'Thirty Five Point Programme'),
 			('Agriculture', 'Agriculture'),
+			('Animal Husbandry','Animal Husbandry'),
+			('Plantation Crops','Plantation Crops'),
+			('Fisheries','Fisheries'),
+			('Traditional Industries','Traditional Industries'),
+			('Modern Industries','Modern Industries'),
+			('Construction','Construction'),
+			('Trade','Trade'),
+			('IT','IT'),
+			('Electricity','Electricity'),
 			('Education','Education'),
+			('Youth','Youth'),
 			('Tourism', 'Tourism'),
 			('Transportation','Transportation'),
 			('Health','Health'),
 			('Law and Order', 'Law and Order'),
 			('Irrigation','Irrigation'),
+			('Environment', 'Environment'),
+			('Finance', 'Finance'),
+			('Social Security','Social Security'),
 		)
 	uuid = models.UUIDField(unique=True,default=uuid.uuid4)
 	title = models.CharField(max_length =200)

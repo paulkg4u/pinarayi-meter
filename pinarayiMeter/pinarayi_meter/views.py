@@ -6,7 +6,7 @@ from libs.statusLib import StatusLib
 
 from helpers import  Collection
 
-
+import json
 
 # Create your views here.
 def index(request):
@@ -32,7 +32,7 @@ def statusApi(request):
 
 def categoryApi(request):
     reqObj = Collection()
-    reqObj.categoryList = request.GET.dict()['categoryList']
+    reqObj.categoryList = request.GET.getlist('categoryList')
     reqObj.type = request.GET.dict()['type']
     categoryLib = CategoryLib()
     response = categoryLib.get_promise_by_category(reqObj)

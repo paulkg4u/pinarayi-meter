@@ -56,9 +56,11 @@
         </div>
     </div>
     <div class="col-md-10 col-sm-12 col-md-offset-1">
-        <h4 class="category-titles">
+        <h4 class="category-titles" >
             The Thirty Five Point Programme
-        </h4> {% for promise in topPromises %}
+            
+        </h4> 
+        {% for promise in topPromises %}
         <a class="col-md-12 promise-list no-padding" href="/promise/details/{{promise.uuid}}">
             <span class="col-md-10 promise-title flex-container">
                     {{promise.title}}
@@ -74,6 +76,11 @@
             <!-- {{promise.status}} -->
         </a>
         {% endfor %}
+        <span class ="col-md-12">
+            <a class = "category-link pull-right" href = "google.com">
+                view more..
+            </a>
+        </span>
     </div>
     <div class="col-md-10 col-sm-12 col-md-offset-1">
         <h4 class = "category-titles text-center">
@@ -89,10 +96,18 @@
             <span class = "category-item" ng-click = "selectedCategory = 'it'" ng-class = "{'category-item-selected':selectedCategory == 'it'}">IT</span>
             <span class = "category-item" ng-click = "selectedCategory = 'tourism'" ng-class = "{'category-item-selected':selectedCategory == 'tourism'}">Tourism</span>
             <span class = "category-item" ng-click = "selectedCategory = 'infrastructure'" ng-class = "{'category-item-selected':selectedCategory == 'infrastructure'}">Infrastructure</span>
-            <span class = "category-item" ng-click = "selectedCategory = 'humandevelopment'" ng-class = "{'category-item-selected':selectedCategory == 'humandevelopment
-            '}">Human Develoment</span>
+            <!-- <span class = "category-item" ng-click = "selectedCategory = 'humandevelopment'" ng-class = "{'category-item-selected':selectedCategory == 'humandevelopment
+            '}">Human Develoment</span> -->
+            <span class = "category-item" ng-click = "selectedCategory = 'others'" ng-class = "{'category-item-selected':selectedCategory == 'others'}">Others</span>
         </h4>
     </div>
-    <div class = "col-md-10 col-sm-12 col-md-offset-1"></div>
+    <div class = "col-md-10 col-sm-12 col-md-offset-1">
+        
+        <span class ="col-md-12">
+            <span class = "category-link pull-right">
+                view more..
+            </span>
+        </span>
+    </div>
 </div>
 {% endblock %}
