@@ -3,6 +3,18 @@ var pinarayiMeter = angular.module('pinarayiMeter', []);
 angular.module('pinarayiMeter').controller('homePageController', function($scope, $rootScope, $http) {
     $scope.selectedCategory = 'agriculture';
 
+    $rootScope.loadingStats = true;
+    $http({
+        method: 'GET',
+        url: '/promise/api/status'
+    }).then(function successCallback(response) {
+        $rootScope.status = response.data;
+        $rootScope.loadingStats = false;
+    }, function errorCallback(response) {
+        console.log(response);
+        $rootScope.loadingStats = false;
+    });
+
     $scope.$watch(function() {
         return $scope.selectedCategory;
     }, function() {
@@ -18,6 +30,8 @@ angular.module('pinarayiMeter').controller('homePageController', function($scope
             }).then(function successCallback(response) {
             	$rootScope.categoryData[$scope.selectedCategory] = response.data.promises;
             	$scope.loadingCategoryData = false;
+            	console.log($rootScope.categoryData[$scope.selectedCategory]);
+            	console.log($scope.selectedCategory);
             }, function errorCallback(response) {
                 console.log(response.data);
                 $scope.loadingCategoryData = false;
@@ -25,21 +39,12 @@ angular.module('pinarayiMeter').controller('homePageController', function($scope
         }
     }, true);
 
-    $rootScope.loadingStats = true;
-    $http({
-        method: 'GET',
-        url: '/promise/api/status'
-    }).then(function successCallback(response) {
-        $scope.status = response.data;
-        $rootScope.loadingStats = false;
-    }, function errorCallback(response) {
-        console.log(response);
-        $rootScope.loadingStats = false;
-    });
 
 });
+
 pinarayiMeter.run(function($rootScope, $http) {
     $rootScope.baseURL = '127.0.0.1:8000';
+
     $rootScope.categoryData = {
         'agriculture': null,
         'education': null,
@@ -65,9 +70,39 @@ pinarayiMeter.run(function($rootScope, $http) {
     	'health':['Health'],
     	'others':['Electricity','Finance','Youth']
     };
+    
 });
 
 angular.module('pinarayiMeter').config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
+});
+
+
+angular.module('pinarayiMeter').controller('thirtyFivePointController',function($http, $scope, $rootScope){
+	$rootScope.loadingStats = true;
+    $http({
+        method: 'GET',
+        url: '/promise/api/status'
+    }).then(function successCallback(response) {
+        $rootScope.status = response.data;
+        $rootScope.loadingStats = false;
+    }, function errorCallback(response) {
+        console.log(response);
+        $rootScope.loadingStats = false;
+    });
+});
+
+angular.module('pinarayiMeter').controller('categoryController',function($http, $scope, $rootScope){
+	$rootScope.loadingStats = true;
+    $http({
+        method: 'GET',
+        url: '/promise/api/status'
+    }).then(function successCallback(response) {
+        $rootScope.status = response.data;
+        $rootScope.loadingStats = false;
+    }, function errorCallback(response) {
+        console.log(response);
+        $rootScope.loadingStats = false;
+    });
 });

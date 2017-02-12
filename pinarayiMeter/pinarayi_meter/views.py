@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import  HttpResponse
 from django.http import  JsonResponse
 from libs.promiseLib import  PromiseLib, CategoryLib
-from libs.statusLib import StatusLib
+from libs.statusLib import APILib
 
 from helpers import  Collection
 
@@ -26,8 +26,8 @@ def promise(request, uuid):
 
 def statusApi(request):
     reqObj = Collection()
-    statusLib = StatusLib()
-    response = statusLib.getPromiseStatus(reqObj)
+    apiLib = APILib()
+    response = apiLib.getPromiseStatus(reqObj)
     return JsonResponse(response)
 
 def categoryApi(request):
@@ -38,4 +38,20 @@ def categoryApi(request):
     response = categoryLib.get_promise_by_category(reqObj)
     return JsonResponse(response)
 
+def thirtFivePoint(request):
+    reqObj = Collection()
+    reqObj.category = 'Thirty Five Point Programme'
+    promiseLib = PromiseLib()
+    response = {}
+    response['promises'] = promiseLib.get_promise_by_category(reqObj)
+    return render(request, 'pinarayi_meter/thirty_five.html',response)
+
+def category(request,category_name):
+    reqObj = Collection()
+    response = {}
+    reqObj.category_name = category_name
+    promiseLib = PromiseLib()
+    response = promiseLib.get_promise_by_category_list(reqObj)
+    
+    return render(request, 'pinarayi_meter/category.html',response)
 

@@ -1,7 +1,7 @@
 from .. models import  Promise
 from .. constants import *
 
-class StatusLib(object):
+class APILib(object):
 
 	def __init__(self):
 		pass

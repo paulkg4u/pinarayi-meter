@@ -1,7 +1,8 @@
-{% extends "main.html" %} 
-{% load static %} 
+{% extends "main.html" %}
+{% load static %}
 {% block pageBody %}
-<div class="container-fluid" ng-controller = "homePageController">
+
+<div class = "container-fluid" ng-controller="thirtyFivePointController">
     <div class="col-md-10 col-sm-12 col-md-offset-1">
         <div class="col-md-12 no-padding">
             <h3 class="">Promises</h3>
@@ -60,7 +61,7 @@
             The Thirty Five Point Programme
             
         </h4> 
-        {% for promise in topPromises %}
+        {% for promise in promises %}
         <a class="col-md-12 promise-list no-padding" href="/promise/details/{{promise.uuid}}">
             <span class="col-md-10 promise-title flex-container">
                     {{promise.title}}
@@ -78,44 +79,6 @@
         {% endfor %}
         <span class ="col-md-12">
             <a class = "category-link pull-right" href = "/promise/35-point-programme">
-                view more..
-            </a>
-        </span>
-    </div>
-    <div class="col-md-10 col-sm-12 col-md-offset-1">
-        <h4 class = "category-titles text-center">
-            <span class = "category-item" ng-click = "selectedCategory = 'agriculture'" ng-class = "{'category-item-selected':selectedCategory == 'agriculture'}">Agriculture</span>
-
-            <span class = "category-item" ng-click = "selectedCategory = 'education'" ng-class = "{'category-item-selected':selectedCategory == 'education'}">Education</span>
-            <span class = "category-item" ng-click = "selectedCategory = 'health'" ng-class = "{'category-item-selected':selectedCategory == 'health'}">Health</span> 
-
-            <span class = "category-item" ng-click = "selectedCategory = 'industries'" ng-class = "{'category-item-selected':selectedCategory == 'industries'}">Industries</span> 
-
-            <span class = "category-item" ng-click = "selectedCategory = 'lawandorder'" ng-class = "{'category-item-selected':selectedCategory == 'lawandorder'}">Law & Order</span>
-
-            <span class = "category-item" ng-click = "selectedCategory = 'it'" ng-class = "{'category-item-selected':selectedCategory == 'it'}">IT</span>
-            <span class = "category-item" ng-click = "selectedCategory = 'tourism'" ng-class = "{'category-item-selected':selectedCategory == 'tourism'}">Tourism</span>
-            <span class = "category-item" ng-click = "selectedCategory = 'infrastructure'" ng-class = "{'category-item-selected':selectedCategory == 'infrastructure'}">Infrastructure</span>
-            <!-- <span class = "category-item" ng-click = "selectedCategory = 'humandevelopment'" ng-class = "{'category-item-selected':selectedCategory == 'humandevelopment
-            '}">Human Develoment</span> -->
-            <span class = "category-item" ng-click = "selectedCategory = 'others'" ng-class = "{'category-item-selected':selectedCategory == 'others'}">Others</span>
-        </h4>
-    </div>
-    <div class = "col-md-10 col-sm-12 col-md-offset-1">
-        <a class="col-md-12 promise-list no-padding" href="/promise/details/[[eachPromise.fields.uuid]]" ng-repeat = "eachPromise in categoryData[selectedCategory]">
-            <span class="col-md-10 promise-title flex-container">
-                    [[eachPromise.fields.title]]
-                </span>
-            
-            <span class="col-md-2 promise-status">
-                    <span class="pull-right">
-                            [[eachPromise.fields.status]]
-                    </span>
-            </span>
-            <!-- {{promise.status}} -->
-        </a>
-        <span class ="col-md-12">
-            <a class = "category-link pull-right" href = "/promise/category/[[selectedCategory]]">
                 view more..
             </a>
         </span>
