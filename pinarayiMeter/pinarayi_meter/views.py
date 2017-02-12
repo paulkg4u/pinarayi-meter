@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import  HttpResponse
 from django.http import  JsonResponse
-from libs.promiseLib import  PromiseLib
+from libs.promiseLib import  PromiseLib, CategoryLib
 from libs.statusLib import StatusLib
 
 from helpers import  Collection
@@ -32,8 +32,10 @@ def statusApi(request):
 
 def categoryApi(request):
     reqObj = Collection()
-    reqObj.categoryName = request.GET.dict()['category']
-    response = {}
+    reqObj.categoryList = request.GET.dict()['categoryList']
+    reqObj.type = request.GET.dict()['type']
+    categoryLib = CategoryLib()
+    response = categoryLib.get_promise_by_category(reqObj)
     return JsonResponse(response)
 
 

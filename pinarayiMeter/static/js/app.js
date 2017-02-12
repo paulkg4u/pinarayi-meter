@@ -13,7 +13,7 @@ angular.module('pinarayiMeter').controller('homePageController', function($scope
                 url: '/promise/api/category',
                 params: {
                     'type': 'minimal',
-                    'category': $scope.selectedCategory
+                    'categoryList': $scope.selectedCategory
                 }
             }).then(function successCallback(response) {
             	$rootScope.selectedCategory = response.data;
@@ -31,7 +31,6 @@ angular.module('pinarayiMeter').controller('homePageController', function($scope
         url: '/promise/api/status'
     }).then(function successCallback(response) {
         $scope.status = response.data;
-        console.log($scope.status);
         $rootScope.loadingStats = false;
     }, function errorCallback(response) {
         console.log(response);
@@ -49,7 +48,8 @@ pinarayiMeter.run(function($rootScope, $http) {
         'it': null,
         'tourism': null,
         'infrastructure': null,
-        'humandevelopment': null
+        'humandevelopment': null,
+        'health':null
     };
 });
 

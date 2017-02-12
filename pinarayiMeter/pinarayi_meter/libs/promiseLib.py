@@ -28,4 +28,7 @@ class CategoryLib(object):
         pass
 
     def get_promise_by_category(self,reqObj):
-        pass
+        # promises = Promise.objects.filter(category__in = [reqObj.categoryList])
+        promises = Promise.objects.all()
+        print promises
+        return {}
