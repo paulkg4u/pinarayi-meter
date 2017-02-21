@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="en" ng-app = "pinarayiMeter">
 <head>
     <meta charset="UTF-8">
     <meta name = "viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
 <nav class = "navbar navbar-inverse navbar-fixed-top top-navbar" style = "opacity:1.0;">
     <div class = "container">
 	<div class = "navbar-header">
-		<a class = "navbar-brand" href = "#">
+		<a class = "navbar-brand" href = "/">
             <!--<img src="">-->
             Pinarayi Meter
 
@@ -38,6 +38,14 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src = "{% static 'js/bootstrap.min.js' %}"></script>
+<script src = "{% static 'js/angular.min.js' %}"></script>
+<script src = "{% static 'js/app.js' %}"></script>
 </body>
 
+
+
 </html>
+<script>
+    
+    console.log('{{status.name}}');
+</script>
