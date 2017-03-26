@@ -1,37 +1,82 @@
-{% extends "main.html" %}
-{% load static %}
-{% block pageBody %}
-
-<div class = "container">
-    <div class = "col-md-12">
-        <div class = "col-md-9 no-padding">
-            <div class = "col-md-12">
-                <h3>Promises</h3>
-            </div>
-            <div class = "col-md-6">
-                
-                {% for promise in promises %}
-                    {{promise.status}}
-                {% endfor %}
-            </div>
-            <div class = "col-md-6">
-                <p>
-                    The Pinarayi Meter is an independent initiative that tracks
-                    his performance with regards to his electoral platform.
-                </p>
-            </div>
+{% extends "main.html" %} {% load static %} {% load disqus_tags %} {% block pageBody %}
+<div class="container-fluid" ng-controller="promiseDetailsController">
+    <div class="col-md-10 col-sm-12 col-md-offset-1">
+        <div class="col-md-12 no-padding">
+            <h3 class="">Promises</h3>
         </div>
-        <div class = "col-md-3 center no-padding padding-20">
-            <img src="{% static 'images/pinarayi_profile.jpg' %}" class = "profile-image">
+        <div class="col-md-12 no-padding" style="height:200px;">
+            <div class="col-md-4 col-sm-8 height-100 flex-container text-center" ng-hide="status">
+                <i class="fa fa-2x fa-spinner fa-spin"></i>
+                <span class="col-md-12">Loading Status</span>
+            </div>
+            <div class="col-md-4 col-sm-8 height-100" ng-if="status">
+                <span class="progress-bar-text">
+                            Not Started ([[status.not_started]] of [[status.total]])
+                    </span>
+                <div class="progress progress-custom">
+                    <div class="progress-bar progress-bar-idle progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:[[status.not_started*100/status.total]]%">
+                    </div>
+                </div>
+                <span class="progress-bar-text">
+                            Completed ([[status.completed]] of [[status.total]])
+                    </span>
+                <div class="progress progress-custom">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:[[status.completed*100/status.total]]%">
+                    </div>
+                </div>
+                <span class="progress-bar-text">
+                            In Progress ([[status.in_progress]] of [[status.total]])
+                    </span>
+                <div class="progress progress-custom">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:[[status.in_progress*100/status.total]]%">
+                    </div>
+                </div>
+                <span class="progress-bar-text">
+                            Broken ([[status.broken]] of [[status.total]])
+                    </span>
+                <div class="progress  progress-custom">
+                    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:[[status.broken*100/status.total]]%">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-4 height-100 border-thick no-padding">
+                <div class="col-md-6 padding-10">
+                    <p class="desc-text">
+                        The Pinarayi Meter is an independent initiative that tracks his performance with regards to his electoral platform.
+                    </p>
+                </div>
+                <div class="col-md-6 hidden-sm no-padding">
+                    <img src="{% static 'images/pinarayi_profile.jpg' %}" class=" pull-right profile-image">
+                </div>
+            </div>
         </div>
     </div>
-    <div class = "col-md-12">
-        <h3>
-        	 {{promiseDetails.title}}   
-        </h3>
-        <div class = "promise-description">
-        	{{promiseDetails.description}}
+    <div class="col-md-10 col-sm-12 col-md-offset-1">
+        <h4 class="category-titles">
+             {{promiseDetails.title}}   
+        </h4>
+        <div class="promise-description">
+            {{promiseDetails.description}}
         </div>
+        <h4 class="category-titles">
+             Comments
+        </h4>
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_config = function () {
+        this.page.url = "/promise/details/"+"{{promiseDetails.uuid}}";
+        this.page.identifier = "{{promiseDetails.uuid}}"; 
+        };
+        
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document,
+                s = d.createElement('script');
+            s.src = 'https://pinarayimeter.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 </div>
 {% endblock %}

@@ -32,7 +32,7 @@ SECRET_KEY = '_snq4$sst9$@pmbm%71_c6)ag6fqwxhs_42z@i0zc1h9-r!0he'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3f95760b.ngrok.io']
 
 
 # Application definition
@@ -44,8 +44,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'pinarayi_meter',
+    'disqus'
 ]
+
+SITE_ID = 1
+DISQUS_WEBSITE_SHORTNAME = 'pinarayimeter'
+DISQUS_API_KEY = 'TECml06FVp7EbNqAL21oyxiJOA1X9K3M6WA0VPNmxOq5UPaer78m41MDpkRvRIN3'
+# DISQUS_API_KEY = 'nT9QpqRK3CV5pzMF2wz8FXhSEMVJt3CvYjhMaSNuGYqON7gCSkcetxChjE4xCrz1'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

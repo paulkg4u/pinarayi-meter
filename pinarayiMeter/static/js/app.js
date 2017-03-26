@@ -106,3 +106,18 @@ angular.module('pinarayiMeter').controller('categoryController',function($http, 
         $rootScope.loadingStats = false;
     });
 });
+
+angular.module('pinarayiMeter').controller('promiseDetailsController',function($http, $scope, $rootScope){
+    $rootScope.loadingStats = true;
+    $http({
+        method: 'GET',
+        url: '/promise/api/status'
+    }).then(function successCallback(response) {
+        $rootScope.status = response.data;
+        $rootScope.loadingStats = false;
+    }, function errorCallback(response) {
+        console.log(response);
+        $rootScope.loadingStats = false;
+    });
+});
+
