@@ -1,6 +1,6 @@
 from django.core import serializers
 
-from .. models import  Promise
+from .. models import  Promise, ReferenceObj
 from .. constants import *
 
 
@@ -35,6 +35,11 @@ class PromiseLib(object):
         promises = Promise.objects.filter(category__in =  reqObj.categoryList)
         return {'promises':promises,'category_name':CATEGORY_CONSTANTS[reqObj.category_name]['name']}
 
+    def get_reference_objects(self, reqObj):
+        referenceObjects = ReferenceObj.objects.filter(promise = reqObj, approved = True)
+        return referenceObjects
+
+
 class CategoryLib(object):
     def __init__(self):
         pass
@@ -43,3 +48,19 @@ class CategoryLib(object):
         promises = Promise.objects.filter(category__in = reqObj.categoryList)
         data = serializers.serialize('json', promises)
         return {'promises':json.loads(data)}
+
+
+class RelatedObjectLib(object):
+    def __init__(self):
+        pass
+
+    def add_related_object(self, reqObj):
+        promiseObj = Promise.objects.get(uuid = reqObj.data['uuid'])
+        newReference = ReferenceObj.objects.create(
+                promise =promiseObj,
+                referenceType = reqObj.data['type'],
+                referenceLink = reqObj.data['link'],
+                title = reqObj.data['title'],
+                comments = reqObj.data['descr']
+            )
+        return {'status':True}

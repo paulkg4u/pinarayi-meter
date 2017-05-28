@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import  HttpResponse
 from django.http import  JsonResponse
-from libs.promiseLib import  PromiseLib, CategoryLib
+from libs.promiseLib import  PromiseLib, CategoryLib, RelatedObjectLib
 from libs.statusLib import APILib
 
 from helpers import  Collection
@@ -21,7 +21,9 @@ def promise(request, uuid):
 
     promiseLib =PromiseLib()
     promiseDetails = promiseLib.get_promise(reqObj)
-    response = {'promiseDetails':promiseDetails}
+    referenceObjects = promiseLib.get_reference_objects(promiseDetails)
+    response = {'promiseDetails':promiseDetails,'referenceObjects':referenceObjects}
+    print response
     return render(request,'pinarayi_meter/promise.html',response)
 
 def statusApi(request):
@@ -55,3 +57,11 @@ def category(request,category_name):
     
     return render(request, 'pinarayi_meter/category.html',response)
 
+def relatedArticle(request):
+    if request.method == "POST":
+        reqObj = Collection()
+        print request.body
+        reqObj.data = json.loads(request.body)
+        referenceLib = RelatedObjectLib()
+        response = referenceLib.add_related_object(reqObj)
+        return JsonResponse(response)

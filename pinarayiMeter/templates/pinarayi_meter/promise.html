@@ -1,4 +1,4 @@
-{% extends "main.html" %} {% load static %} {% load disqus_tags %} {% block pageBody %}
+{% extends "main.html" %} {% load static %} {% block pageBody %}
 <div class="container-fluid" ng-controller="promiseDetailsController">
     <div class="col-md-10 col-sm-12 col-md-offset-1">
         <div class="col-md-12 no-padding">
@@ -51,23 +51,117 @@
             </div>
         </div>
     </div>
-    <div class="col-md-10 col-sm-12 col-md-offset-1">
-        <h4 class="category-titles">
+    <div class="col-md-10 col-sm-12 col-md-offset-1" style="margin-top:20px;">
+        <h4 class="category-titles" style="height:30px;">
              {{promiseDetails.title}}   
+             <span class = "btn btn-sm btn-warning pull-right" ng-click = "openModal()">
+                Suggest Edit 
+             </span>
         </h4>
+        <div class="modal fade" id="editSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Post an update</h4>
+                    </div>
+                    <div class="modal-body">
+                        Thanks, Your response has been recorded. We will review your update and will update it in the page.
+                        <div class="form-group" style="text-align: right;">
+                            <div type="button" class="btn btn-default" data-dismiss="modal">Okay</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="suggestEdit" tabindex="-1" role="dialog" aria-labelledby="suggestEditModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="suggestEditModal">Post an update</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editForm">
+                            {% csrf_token %}
+                            <div class="form-group col-md-6">
+                                <label for="title">
+                                    Title
+                                </label>
+                                <input name="title" id="title" type="text" ng-model="title" class="form-control" required="true">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="type">
+                                    Type
+                                </label>
+                                <select name="type" class="form-control" id="type" ng-model="type">
+                                    <option value="Document">
+                                        Document
+                                    </option>
+                                    <option value="Video">
+                                        Video
+                                    </option>
+                                    <option value="Web Page">
+                                        Web Link
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea name="description" id="description" class="form-control" ng-model="description" placeholder="Description"></textarea>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="relatedLink">
+                                    Related Link
+                                </label>
+                                <input name="relatedLink" type="text" id="relatedLink" ng-model="relatedLink" class="form-control" required="true">
+                            </div>
+                            <div class="form-group" style="text-align: right;">
+                                <div type="button" class="btn btn-default" data-dismiss="modal">Close</div>
+                                <div type="submit" class="btn btn-primary" ng-click="submitEdit()">Submit</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="promise-description">
             {{promiseDetails.description}}
         </div>
+        {% if referenceObjects|length > 0 %}
+        <h4 class="category-titles">
+                Related Articles
+            </h4>
+        <div class="related-article-list">
+            {% for eachArticle in referenceObjects%}
+            <div class="related-article">
+                <span class="related-article-heading">
+                            {{eachArticle.title}}
+                        </span>
+                <span class="related-article-desc">
+                            {{eachArticle.comments}}
+                        </span>
+                <span class="related-article-link">
+                            <a href="{{eachArticle.referenceLink}}" target = "_">{{eachArticle.referenceLink}}</a>
+                        </span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
         <h4 class="category-titles">
              Comments
         </h4>
         <div id="disqus_thread"></div>
         <script>
-        var disqus_config = function () {
-        this.page.url = "/promise/details/"+"{{promiseDetails.uuid}}";
-        this.page.identifier = "{{promiseDetails.uuid}}"; 
+        var URLArray = window.location.pathname.split('/');
+        var uuid = URLArray[URLArray.length - 1];
+
+        var disqus_config = function() {
+            this.page.url = "/promise/details/" + uuid;
+            this.page.identifier = uuid;
         };
-        
+
         (function() { // DON'T EDIT BELOW THIS LINE
             var d = document,
                 s = d.createElement('script');

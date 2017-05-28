@@ -44,11 +44,21 @@ class Promise(models.Model):
 	def __unicode__(self):
 		return unicode(self.title)
 
+
 class ReferenceObj(models.Model):
+	TYPES = (
+			('Document','Document'),
+			('Video', 'Video'),
+			('Web Page','Web Page')
+		)
 	uuid = models.UUIDField(unique=True, default=uuid.uuid4)
 	promise = models.ForeignKey(Promise)
-	referenceType = models.CharField(max_length = 10)
+	referenceType = models.CharField(max_length = 10, choices=TYPES)
 	referenceLink = models.TextField(default = "")
+	title = models.CharField(max_length = 100,default = "")
+	comments = models.TextField(default = "")
+	approved = models.BooleanField(default = False)
+
 	
 	def __unicode__(self):
 		return unicode(self.promise.title) 

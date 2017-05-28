@@ -119,3 +119,24 @@ background-color: #aaa;
   background-color: #333;
   padding: 10px;
 }
+
+.related-article-list{
+  padding:0px 10px 0px 10px;
+}
+.related-article{
+  margin-bottom: 10px;
+}
+.related-article-heading{
+  display: block;
+  font-weight: 600 !important;
+  
+}
+
+.related-article-desc{
+  display: block;
+}
+.related-article-link{
+  display: block;
+  font-weight: 500 !important;
+  
+}

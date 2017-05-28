@@ -21,6 +21,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^promise/',include('pinarayi_meter.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^/$', include('pinarayi_meter.urls'))
+    url(r'^', include('pinarayi_meter.urls'))
 
 ]
