@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'pinarayi_meter',
-    'disqus'
 ]
 
 SITE_ID = 1
